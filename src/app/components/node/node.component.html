@@ -1,0 +1,8 @@
+<div *ngFor="let comment of comments">
+  <ul>
+    <li>
+      {{comment.text}}
+      <app-node [comments]="comment.comments" *ngIf="comment.comments"> </app-node>
+    </li>
+  </ul>
+</div>
