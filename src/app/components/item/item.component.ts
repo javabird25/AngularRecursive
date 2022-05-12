@@ -3,7 +3,10 @@ export class Comment {
   text: string | undefined;
   comments?: Comment[];
 }
-
+export class Org {
+  name: string | undefined;
+  nodes?: Org[];
+}
 
 @Component({
   selector: 'app-item',
@@ -13,17 +16,22 @@ export class Comment {
 export class ItemComponent implements OnInit {
 
 
- public orgs = [
+ public orgs: Org[] = [
     {name: 'Руководитель', nodes: [
         {name: 'Финансовый отдел', nodes: [
             { name: 'Инженер 1', nodes: []},
-            { name: 'Инженер 2', nodes: []},
+            { name: 'Инженер 2', nodes: [
+                {name : 'Стажер 1', nodes:[]},
+                {name : 'Стажер 2', nodes:[]},
+              ]},
           ]},
-        {name: 'Отдел снабжения', nodes: []},
+        {name: 'Отдел снабжения', nodes: [
+            {name : 'Менеджер снабжения', nodes:[]},
+          ]},
         {name: 'Отдел продаж', nodes: []}
       ]}
   ];
- public  someObj =  [
+  /* public  someObj =  [
     {
       name: 'Thor',
       friends: [
@@ -51,9 +59,9 @@ export class ItemComponent implements OnInit {
       ]
 
     }];
-  public tests = [
+ /* public tests = [
      [{name:"Alice",score:70,subject:"English"},{name:"John",score:68,subject:"English"}]
-  ];
+  ]; */
 
 // tslint:disable-next-line:variable-name
   // @ts-ignore
@@ -103,4 +111,8 @@ export class ItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // tslint:disable-next-line:typedef
+  onAdd(){
+
+  }
 }
