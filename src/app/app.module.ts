@@ -1,24 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ItemComponent } from './components/item/item.component';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { NodeComponent } from './components/node/node.component';
+import { OrgTreeComponent } from './components/org-tree/org-tree.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ItemComponent,
-    NodeComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
-    ],
+  declarations: [AppComponent, NodeComponent, OrgTreeComponent],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

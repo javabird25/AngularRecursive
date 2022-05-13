@@ -1,27 +1,29 @@
-import {Component, Input, OnInit, EventEmitter,  Output} from '@angular/core';
-import {Comment, Org} from '../item/item.component';
-
+import { Component, Input } from '@angular/core';
+import { Org, OrgTreeService } from 'src/app/org-tree.service';
 
 @Component({
-  selector: 'app-node',
+  selector: 'li[app-node]',
   templateUrl: './node.component.html',
-  styleUrls: ['./node.component.css']
+  styleUrls: ['./node.component.css'],
 })
-export class NodeComponent implements OnInit {
- // @Input() someObj = [];
- // @Input() tests  = [];
-  // tslint:disable-next-line:variable-name
- // @Input() comments: Comment[] | undefined;
-  @Input() orgs: Org[] | undefined;
-  // tslint:disable-next-line:no-output-on-prefix
-  @Output() onAdd = new EventEmitter();
-  constructor() { }
+export class NodeComponent {
+  @Input() org: Org = { name: '', nodes: [] };
+  editing = false;
+  newName = '';
 
-  ngOnInit(): void {
+  constructor(private orgTreeService: OrgTreeService) {}
+
+  add() {
+    this.orgTreeService.addOrg({ name: '(Безымянный)', nodes: [] }, this.org.name);
   }
-  // tslint:disable-next-line:typedef
-  Add(){
-  this.onAdd.emit();
 
+  startEditing() {
+    this.newName = this.org.name;
+    this.editing = true;
+  }
+
+  save() {
+    this.orgTreeService.renameOrg(this.org.name, this.newName);
+    this.editing = false;
   }
 }
