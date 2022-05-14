@@ -7,14 +7,14 @@ import { Org, OrgTreeService } from 'src/app/org-tree.service';
   styleUrls: ['./node.component.css'],
 })
 export class NodeComponent {
-  @Input() org: Org = { name: '', nodes: [] };
+  @Input() org: Org = new Org('');
   editing = false;
   newName = '';
 
   constructor(private orgTreeService: OrgTreeService) {}
 
   add() {
-    this.orgTreeService.addOrg({ name: '(Безымянный)', nodes: [] }, this.org.name);
+    this.orgTreeService.addOrg('(Безымянный)', this.org);
   }
 
   startEditing() {
@@ -23,7 +23,7 @@ export class NodeComponent {
   }
 
   save() {
-    this.orgTreeService.renameOrg(this.org.name, this.newName);
+    this.orgTreeService.renameOrg(this.org, this.newName);
     this.editing = false;
   }
 }
